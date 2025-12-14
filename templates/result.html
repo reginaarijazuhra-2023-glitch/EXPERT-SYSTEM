@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hasil Tes - Love Language</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#d94878;
+      --pink-deep:#e85c8b;
+      --muted:#666;
+      --card-shadow:0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    body{
+      margin:0; padding:0;
+      font-family:'Poppins', sans-serif;
+      background:white;
+      color:#222;
+    }
+
+    .container{ width:90%; max-width:900px; margin:0 auto; }
+
+    /* HEADER */
+    .site-header{
+      background:#ffffffcc;
+      backdrop-filter:blur(6px);
+      position:fixed;
+      width:100%; top:0; z-index:1000;
+      border-bottom:1px solid rgba(230,200,210,0.6);
+    }
+    .site-header .container{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 20px;
+    }
+    .brand{
+      font-weight:700; font-size:20px;
+      color:var(--pink-deep);
+    }
+    .nav a{ text-decoration:none; font-weight:600; color:#444; }
+
+    main{ padding-top:120px; padding-bottom:60px; }
+
+    .card{
+      background:white;
+      border-radius:16px;
+      box-shadow:var(--card-shadow);
+      padding:28px 26px;
+    }
+
+    .title-main{
+      text-align:center; font-size:28px; font-weight:700;
+      color:var(--pink-deep);
+    }
+    .subtitle{
+      text-align:center; font-size:15px; color:#666;
+    }
+
+    .dominant{
+      margin-top:25px;
+      background:#fff6fa;
+      padding:20px 18px;
+      border-radius:14px;
+      border-left:5px solid var(--pink-deep);
+    }
+    .dominant-name{
+      font-size:22px; font-weight:700;
+      color:var(--pink-deep); margin:8px 0;
+    }
+
+    h3{
+      margin-top:28px;
+      color:#333; font-size:20px;
+    }
+
+    .score-list{
+      margin-top:10px;
+      border-radius:12px;
+      padding:12px 0;
+    }
+    .score-row{
+      display:flex; justify-content:space-between;
+      padding:10px 4px;
+      border-bottom:1px solid #eee;
+      font-size:15px;
+    }
+    .score-row:last-child{ border-bottom:none; }
+
+    .score{ font-weight:700; color:var(--pink); }
+
+    .btn-primary{
+      background:var(--pink-deep);
+      color:white;
+      padding:12px 26px;
+      font-weight:700;
+      border:none;
+      border-radius:28px;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(232,92,139,0.18);
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:40px;
+      color:#777;
+      font-size:14px;
+      padding-bottom:20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">LoveLanguage</div>
+      <nav class="nav"><a href="/">Beranda</a></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card result-card">
+
+      <h2 class="title-main">Hasil Tes Kamu 💖</h2>
+      <p class="subtitle">Begini cara kamu paling nyaman menerima kasih sayang.</p>
+
+      <div class="dominant">
+        <h3 style="margin:0;">Love Language Dominan</h3>
+        <p class="dominant-name">{{ dominant_name }} 🌟</p>
+        <p style="color:#444">{{ descriptions[dominant_cat] }}</p>
+      </div>
+
+      <h3>Rincian Skor</h3>
+      <div class="score-list">
+        <div class="score-row"><span>Words of Affirmation</span><span class="score">{{ "%.2f"|format(perc["L1"]) }}%</span></div>
+        <div class="score-row"><span>Acts of Service</span><span class="score">{{ "%.2f"|format(perc["L2"]) }}%</span></div>
+        <div class="score-row"><span>Receiving Gifts</span><span class="score">{{ "%.2f"|format(perc["L3"]) }}%</span></div>
+        <div class="score-row"><span>Quality Time</span><span class="score">{{ "%.2f"|format(perc["L4"]) }}%</span></div>
+        <div class="score-row"><span>Physical Touch</span><span class="score">{{ "%.2f"|format(perc["L5"]) }}%</span></div>
+      </div>
+
+      <div style="text-align:center;margin-top:25px;">
+        <a href="/"><button class="btn-primary">Tes Lagi 🔁</button></a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="container footer">
+    © 2025 LoveLanguage
+  </footer>
+
+</body>
+</html>
