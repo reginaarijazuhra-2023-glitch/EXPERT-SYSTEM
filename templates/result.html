@@ -12,110 +12,295 @@
       --pink:#d94878;
       --pink-deep:#e85c8b;
       --muted:#666;
-      --card-shadow:0 4px 20px rgba(0,0,0,0.06);
+      --card-shadow:0 8px 30px rgba(217, 72, 120, 0.12);
     }
 
     body{
       margin:0; padding:0;
       font-family:'Poppins', sans-serif;
-      background:white;
+      background: linear-gradient(135deg, #fff 0%, #fff5f9 100%);
       color:#222;
+      min-height:100vh;
     }
 
     .container{ width:90%; max-width:900px; margin:0 auto; }
 
     /* HEADER */
     .site-header{
-      background:#ffffffcc;
-      backdrop-filter:blur(6px);
+      background:#ffffffee;
+      backdrop-filter:blur(12px);
       position:fixed;
       width:100%; top:0; z-index:1000;
-      border-bottom:1px solid rgba(230,200,210,0.6);
+      border-bottom:1px solid rgba(217, 72, 120, 0.1);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.03);
     }
     .site-header .container{
       display:flex; justify-content:space-between; align-items:center;
-      padding:14px 20px;
+      padding:16px 20px;
     }
     .brand{
-      font-weight:700; font-size:20px;
+      font-weight:700; font-size:24px;
       color:var(--pink-deep);
+      display:flex; align-items:center; gap:10px;
+      transition: transform 0.3s ease;
     }
-    .nav a{ text-decoration:none; font-weight:600; color:#444; }
+    .brand:hover{
+      transform: scale(1.05);
+    }
+    .brand .heart{
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
 
-    main{ padding-top:120px; padding-bottom:60px; }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .nav a{ 
+      text-decoration:none; 
+      font-weight:600; 
+      color:#444;
+      transition: color 0.3s ease;
+    }
+    .nav a:hover{
+      color: var(--pink);
+    }
+
+    main{ padding-top:120px; padding-bottom:80px; }
 
     .card{
       background:white;
-      border-radius:16px;
+      border-radius:24px;
       box-shadow:var(--card-shadow);
-      padding:28px 26px;
+      padding:40px 36px;
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 0.6s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--pink), var(--pink-deep));
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .title-main{
-      text-align:center; font-size:28px; font-weight:700;
+      text-align:center; 
+      font-size:36px; 
+      font-weight:700;
       color:var(--pink-deep);
+      margin-bottom:8px;
     }
     .subtitle{
-      text-align:center; font-size:15px; color:#666;
+      text-align:center; 
+      font-size:16px; 
+      color:#999;
+      margin-bottom:30px;
     }
 
     .dominant{
-      margin-top:25px;
-      background:#fff6fa;
-      padding:20px 18px;
-      border-radius:14px;
-      border-left:5px solid var(--pink-deep);
-    }
-    .dominant-name{
-      font-size:22px; font-weight:700;
-      color:var(--pink-deep); margin:8px 0;
+      margin-top:30px;
+      background: linear-gradient(135deg, #fff6fa 0%, #ffeef6 100%);
+      padding:28px 24px;
+      border-radius:20px;
+      border-left:6px solid var(--pink-deep);
+      box-shadow: 0 4px 20px rgba(217, 72, 120, 0.1);
+      position: relative;
+      overflow: hidden;
     }
 
-    h3{
-      margin-top:28px;
-      color:#333; font-size:20px;
+    .dominant::after {
+      content: "✨";
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 40px;
+      opacity: 0.3;
+    }
+
+    .dominant h3{
+      margin:0 0 12px;
+      color:#555;
+      font-size:18px;
+      font-weight:600;
+    }
+
+    .dominant-name{
+      font-size:28px; 
+      font-weight:700;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin:8px 0 16px;
+      line-height:1.3;
+    }
+
+    .dominant p{
+      color:#555;
+      line-height:1.7;
+      margin:8px 0;
+      font-size:15px;
+    }
+
+    h3.section-heading{
+      margin-top:40px;
+      color:#333; 
+      font-size:24px;
+      font-weight:700;
+      margin-bottom:20px;
     }
 
     .score-list{
-      margin-top:10px;
-      border-radius:12px;
-      padding:12px 0;
+      background:#fafafa;
+      border-radius:16px;
+      padding:20px;
+      margin-top:16px;
     }
-    .score-row{
-      display:flex; justify-content:space-between;
-      padding:10px 4px;
+    .score-item{
       border-bottom:1px solid #eee;
-      font-size:15px;
     }
-    .score-row:last-child{ border-bottom:none; }
+    .score-item:last-child{ 
+      border-bottom:none; 
+    }
+    
+    .score-row{
+      display:flex; 
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 8px;
+      font-size:15px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .score-row:hover{
+      background:#fff;
+      padding-left:16px;
+      border-radius:8px;
+    }
 
-    .score{ font-weight:700; color:var(--pink); }
+    .score-row span:first-child{
+      font-weight:600;
+      color:#444;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .score-row .arrow{
+      font-size: 12px;
+      color: #999;
+      transition: transform 0.3s ease;
+    }
+
+    .score-row.active .arrow{
+      transform: rotate(180deg);
+    }
+
+    .score{ 
+      font-weight:700; 
+      color:var(--pink-deep);
+      font-size:17px;
+      min-width:70px;
+      text-align:right;
+    }
+
+    .score-description{
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 8px;
+    }
+
+    .score-description.show{
+      max-height: 300px;
+      padding: 16px 8px 20px;
+    }
+
+    .score-description p{
+      margin: 0;
+      color: #666;
+      line-height: 1.7;
+      font-size: 14px;
+      background: white;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border-left: 3px solid var(--pink);
+    }
+
+    .btn-container{
+      text-align:center;
+      margin-top:40px;
+    }
 
     .btn-primary{
-      background:var(--pink-deep);
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
       color:white;
-      padding:12px 26px;
+      padding:14px 36px;
       font-weight:700;
       border:none;
-      border-radius:28px;
+      border-radius:50px;
       cursor:pointer;
-      box-shadow:0 6px 18px rgba(232,92,139,0.18);
+      font-size:15px;
+      box-shadow:0 6px 20px rgba(232,92,139,0.25);
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover{
+      transform: translateY(-3px);
+      box-shadow:0 8px 30px rgba(232,92,139,0.35);
     }
 
     .footer{
       text-align:center;
-      margin-top:40px;
-      color:#777;
+      margin-top:50px;
+      color:#999;
       font-size:14px;
-      padding-bottom:20px;
+      padding-bottom:30px;
     }
+
+    /* RESPONSIVE */
+    @media (max-width:720px){
+      .card{
+        padding:32px 24px;
+        border-radius:20px;
+      }
+      .title-main{
+        font-size:28px;
+      }
+      .dominant-name{
+        font-size:24px;
+      }
+      .score-row{
+        font-size:14px;
+      }
+      main{
+        padding-top:100px;
+      }
+    }
+
   </style>
 </head>
 <body>
 
   <header class="site-header">
     <div class="container">
-      <div class="brand">LoveLanguage</div>
+      <div class="brand">
+        <span class="heart" style="font-size:20px;">❤</span>
+        Amora
+      </div>
       <nav class="nav"><a href="/">Beranda</a></nav>
     </div>
   </header>
@@ -127,30 +312,129 @@
       <p class="subtitle">Begini cara kamu paling nyaman menerima kasih sayang.</p>
 
       <div class="dominant">
-        <h3 style="margin:0;">Love Language Dominan</h3>
-        <p class="dominant-name">{{ dominant_name }} 🌟</p>
-        <p style="color:#444">{{ descriptions[dominant_cat] }}</p>
+        <h3>
+          {% if dominant_names|length > 1 %}
+            Love Language Dominan Kamu
+          {% else %}
+            Love Language Dominan
+          {% endif %}
+        </h3>
+
+        {% for name in dominant_names %}
+          <p class="dominant-name">{{ name }} 🌟</p>
+        {% endfor %}
+
+        {% for desc in dominant_descriptions %}
+          <p>{{ desc }}</p>
+        {% endfor %}
       </div>
 
-      <h3>Rincian Skor</h3>
+      <h3 class="section-heading">Rincian Skor</h3>
       <div class="score-list">
-        <div class="score-row"><span>Words of Affirmation</span><span class="score">{{ "%.2f"|format(perc["L1"]) }}%</span></div>
-        <div class="score-row"><span>Acts of Service</span><span class="score">{{ "%.2f"|format(perc["L2"]) }}%</span></div>
-        <div class="score-row"><span>Receiving Gifts</span><span class="score">{{ "%.2f"|format(perc["L3"]) }}%</span></div>
-        <div class="score-row"><span>Quality Time</span><span class="score">{{ "%.2f"|format(perc["L4"]) }}%</span></div>
-        <div class="score-row"><span>Physical Touch</span><span class="score">{{ "%.2f"|format(perc["L5"]) }}%</span></div>
+        <div class="score-item">
+          <div class="score-row" onclick="toggleDescription(this)">
+            <span>
+              Words of Affirmation
+              <span class="arrow">▼</span>
+            </span>
+            <span class="score">{{ "%.2f"|format(perc["L1"]) }}%</span>
+          </div>
+          <div class="score-description">
+            <p>Kamu merasa paling dicintai melalui kata-kata positif, pujian, dan afirmasi yang tulus. Ucapan seperti "aku bangga padamu" atau "kamu hebat" sangat berarti bagimu.</p>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div class="score-row" onclick="toggleDescription(this)">
+            <span>
+              Acts of Service
+              <span class="arrow">▼</span>
+            </span>
+            <span class="score">{{ "%.2f"|format(perc["L2"]) }}%</span>
+          </div>
+          <div class="score-description">
+            <p>Kamu merasa dicintai ketika orang lain menunjukkan kasih sayang melalui tindakan nyata. Bantuan kecil tanpa diminta membuat kamu merasa sangat dihargai.</p>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div class="score-row" onclick="toggleDescription(this)">
+            <span>
+              Receiving Gifts
+              <span class="arrow">▼</span>
+            </span>
+            <span class="score">{{ "%.2f"|format(perc["L3"]) }}%</span>
+          </div>
+          <div class="score-description">
+            <p>Kamu menghargai hadiah sebagai simbol perhatian dan usaha dari orang yang kamu sayangi. Hadiah kecil yang bermakna bisa membuat harimu jauh lebih baik.</p>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div class="score-row" onclick="toggleDescription(this)">
+            <span>
+              Quality Time
+              <span class="arrow">▼</span>
+            </span>
+            <span class="score">{{ "%.2f"|format(perc["L4"]) }}%</span>
+          </div>
+          <div class="score-description">
+            <p>Kamu merasa paling dicintai saat mendapatkan waktu dan perhatian penuh. Menghabiskan waktu bersama tanpa distraksi membuat kamu merasa sangat dekat secara emosional.</p>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div class="score-row" onclick="toggleDescription(this)">
+            <span>
+              Physical Touch
+              <span class="arrow">▼</span>
+            </span>
+            <span class="score">{{ "%.2f"|format(perc["L5"]) }}%</span>
+          </div>
+          <div class="score-description">
+            <p>Kamu merasa dicintai melalui sentuhan fisik seperti pelukan dan kedekatan. Sentuhan lembut membuat kamu merasa aman, dihargai, dan lebih terhubung.</p>
+          </div>
+        </div>
       </div>
 
-      <div style="text-align:center;margin-top:25px;">
-        <a href="/"><button class="btn-primary">Tes Lagi 🔁</button></a>
+      <div class="btn-container">
+        <a href="{{ url_for('restart_test') }}" class="btn-primary">
+          Tes Lagi 🔁
+        </a>
       </div>
 
     </div>
   </main>
 
   <footer class="container footer">
-    © 2025 LoveLanguage
+    © 2025 Amora — Sistem Pakar Love Language
   </footer>
+
+  <script>
+    function toggleDescription(element) {
+      const description = element.nextElementSibling;
+      const allDescriptions = document.querySelectorAll('.score-description');
+      const allRows = document.querySelectorAll('.score-row');
+      
+      // Close all other descriptions
+      allDescriptions.forEach(desc => {
+        if (desc !== description) {
+          desc.classList.remove('show');
+        }
+      });
+      
+      // Remove active class from all rows
+      allRows.forEach(row => {
+        if (row !== element) {
+          row.classList.remove('active');
+        }
+      });
+      
+      // Toggle current description
+      description.classList.toggle('show');
+      element.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
